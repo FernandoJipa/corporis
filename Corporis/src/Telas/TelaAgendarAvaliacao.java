@@ -83,7 +83,9 @@ public class TelaAgendarAvaliacao extends JDialog {
 	private String meses[] = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
 			"Outubro", "Novembro", "Dezembro" };
 
-	private JComboBox<Object> cbbAno = new JComboBox<Object>(), cbbMes = new JComboBox<Object>(meses);;
+	private JComboBox<Object> cbbAno = new JComboBox<Object>(), cbbMes = new JComboBox<Object>(meses);
+	
+	private Color corPassaMouse = new Color(240, 240, 240);
 
 	private Panel panel = new Panel();
 
@@ -245,6 +247,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lblSabado);
 
 		lbl1 = new Label("0");
+		lbl1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl1.getText().length()!=0){
+				lbl1.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl1.getText().length()!=0){
+					lbl1.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl1.setForeground(Color.RED);
 		lbl1.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl1.setBackground(Color.WHITE);
@@ -253,6 +268,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl1);
 
 		lbl2 = new Label("0");
+		lbl2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl2.getText().length()!=0){
+				lbl2.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl2.getText().length()!=0){
+					lbl2.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl2.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl2.setBackground(Color.WHITE);
 		lbl2.setAlignment(Label.CENTER);
@@ -260,6 +288,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl2);
 
 		lbl3 = new Label("0");
+		lbl3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl3.getText().length()!=0){
+				lbl3.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl3.getText().length()!=0){
+					lbl3.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl3.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl3.setBackground(Color.WHITE);
 		lbl3.setAlignment(Label.CENTER);
@@ -267,6 +308,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl3);
 
 		lbl4 = new Label("0");
+		lbl4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl4.getText().length()!=0){
+				lbl4.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl4.getText().length()!=0){
+					lbl4.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl4.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl4.setBackground(Color.WHITE);
 		lbl4.setAlignment(Label.CENTER);
@@ -274,6 +328,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl4);
 
 		lbl5 = new Label("0");
+		lbl5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl5.getText().length()!=0){
+				lbl5.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl5.getText().length()!=0){
+					lbl5.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl5.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl5.setBackground(Color.WHITE);
 		lbl5.setAlignment(Label.CENTER);
@@ -281,6 +348,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl5);
 
 		lbl6 = new Label("0");
+		lbl6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl6.getText().length()!=0){
+				lbl6.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl6.getText().length()!=0){
+					lbl6.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl6.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl6.setBackground(Color.WHITE);
 		lbl6.setAlignment(Label.CENTER);
@@ -288,6 +368,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl6);
 
 		lbl7 = new Label("0");
+		lbl7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl7.getText().length()!=0){
+				lbl7.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl7.getText().length()!=0){
+					lbl7.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl7.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl7.setBackground(Color.WHITE);
 		lbl7.setAlignment(Label.CENTER);
@@ -295,6 +388,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl7);
 
 		lbl8 = new Label("0");
+		lbl8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl8.getText().length()!=0){
+				lbl8.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl8.getText().length()!=0){
+					lbl8.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl8.setForeground(Color.RED);
 		lbl8.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl8.setBackground(Color.WHITE);
@@ -303,6 +409,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl8);
 
 		lbl9 = new Label("0");
+		lbl9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl9.getText().length()!=0){
+				lbl9.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl9.getText().length()!=0){
+					lbl9.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl9.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl9.setBackground(Color.WHITE);
 		lbl9.setAlignment(Label.CENTER);
@@ -310,6 +429,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl9);
 
 		lbl10 = new Label("0");
+		lbl10.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl10.getText().length()!=0){
+				lbl10.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl10.getText().length()!=0){
+					lbl10.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl10.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl10.setBackground(Color.WHITE);
 		lbl10.setAlignment(Label.CENTER);
@@ -317,6 +449,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl10);
 
 		lbl11 = new Label("0");
+		lbl11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl11.getText().length()!=0){
+				lbl11.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl11.getText().length()!=0){
+					lbl11.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl11.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl11.setBackground(Color.WHITE);
 		lbl11.setAlignment(Label.CENTER);
@@ -324,6 +469,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl11);
 
 		lbl12 = new Label("0");
+		lbl12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl12.getText().length()!=0){
+				lbl12.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl12.getText().length()!=0){
+					lbl12.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl12.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl12.setBackground(Color.WHITE);
 		lbl12.setAlignment(Label.CENTER);
@@ -331,6 +489,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl12);
 
 		lbl13 = new Label("0");
+		lbl13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl13.getText().length()!=0){
+				lbl13.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl13.getText().length()!=0){
+					lbl13.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl13.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl13.setBackground(Color.WHITE);
 		lbl13.setAlignment(Label.CENTER);
@@ -338,6 +509,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl13);
 
 		lbl14 = new Label("0");
+		lbl14.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl14.getText().length()!=0){
+				lbl14.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl14.getText().length()!=0){
+					lbl14.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl14.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl14.setBackground(Color.WHITE);
 		lbl14.setAlignment(Label.CENTER);
@@ -345,6 +529,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl14);
 
 		lbl22 = new Label("0");
+		lbl22.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl22.getText().length()!=0){
+				lbl22.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl22.getText().length()!=0){
+					lbl22.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl22.setForeground(Color.RED);
 		lbl22.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl22.setBackground(Color.WHITE);
@@ -353,6 +550,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl22);
 
 		lbl23 = new Label("0");
+		lbl23.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl23.getText().length()!=0){
+				lbl23.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl23.getText().length()!=0){
+					lbl23.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl23.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl23.setBackground(Color.WHITE);
 		lbl23.setAlignment(Label.CENTER);
@@ -360,6 +570,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl23);
 
 		lbl16 = new Label("0");
+		lbl16.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl16.getText().length()!=0){
+				lbl16.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl16.getText().length()!=0){
+					lbl16.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl16.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl16.setBackground(Color.WHITE);
 		lbl16.setAlignment(Label.CENTER);
@@ -367,6 +590,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl16);
 
 		lbl15 = new Label("0");
+		lbl15.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl15.getText().length()!=0){
+				lbl15.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl15.getText().length()!=0){
+					lbl15.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl15.setForeground(Color.RED);
 		lbl15.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl15.setBackground(Color.WHITE);
@@ -375,6 +611,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl15);
 
 		lbl17 = new Label("0");
+		lbl17.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl17.getText().length()!=0){
+				lbl17.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl17.getText().length()!=0){
+					lbl17.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl17.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl17.setBackground(Color.WHITE);
 		lbl17.setAlignment(Label.CENTER);
@@ -382,6 +631,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl17);
 
 		lbl24 = new Label("0");
+		lbl24.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl24.getText().length()!=0){
+				lbl24.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl24.getText().length()!=0){
+					lbl24.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl24.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl24.setBackground(Color.WHITE);
 		lbl24.setAlignment(Label.CENTER);
@@ -389,6 +651,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl24);
 
 		lbl25 = new Label("0");
+		lbl25.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl25.getText().length()!=0){
+				lbl25.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl25.getText().length()!=0){
+					lbl25.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl25.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl25.setBackground(Color.WHITE);
 		lbl25.setAlignment(Label.CENTER);
@@ -396,6 +671,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl25);
 
 		lbl18 = new Label("0");
+		lbl18.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl18.getText().length()!=0){
+				lbl18.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl18.getText().length()!=0){
+					lbl18.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl18.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl18.setBackground(Color.WHITE);
 		lbl18.setAlignment(Label.CENTER);
@@ -403,6 +691,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl18);
 
 		lbl19 = new Label("0");
+		lbl19.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl19.getText().length()!=0){
+				lbl19.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl19.getText().length()!=0){
+					lbl19.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl19.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl19.setBackground(Color.WHITE);
 		lbl19.setAlignment(Label.CENTER);
@@ -410,6 +711,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl19);
 
 		lbl26 = new Label("0");
+		lbl26.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl26.getText().length()!=0){
+				lbl26.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl26.getText().length()!=0){
+					lbl26.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl26.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl26.setBackground(Color.WHITE);
 		lbl26.setAlignment(Label.CENTER);
@@ -417,6 +731,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl26);
 
 		lbl27 = new Label("0");
+		lbl27.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl27.getText().length()!=0){
+				lbl27.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl27.getText().length()!=0){
+					lbl27.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl27.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl27.setBackground(Color.WHITE);
 		lbl27.setAlignment(Label.CENTER);
@@ -424,6 +751,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl27);
 
 		lbl20 = new Label("0");
+		lbl20.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl20.getText().length()!=0){
+				lbl20.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl20.getText().length()!=0){
+					lbl20.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl20.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl20.setBackground(Color.WHITE);
 		lbl20.setAlignment(Label.CENTER);
@@ -431,6 +771,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl20);
 
 		lbl21 = new Label("0");
+		lbl21.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl21.getText().length()!=0){
+				lbl21.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl21.getText().length()!=0){
+					lbl21.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl21.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl21.setBackground(Color.WHITE);
 		lbl21.setAlignment(Label.CENTER);
@@ -438,6 +791,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl21);
 
 		lbl28 = new Label("0");
+		lbl28.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl28.getText().length()!=0){
+				lbl28.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl28.getText().length()!=0){
+					lbl28.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl28.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl28.setBackground(Color.WHITE);
 		lbl28.setAlignment(Label.CENTER);
@@ -445,6 +811,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl28);
 
 		lbl36 = new Label("0");
+		lbl36.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl36.getText().length()!=0){
+				lbl36.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl36.getText().length()!=0){
+					lbl36.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl36.setForeground(Color.RED);
 		lbl36.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl36.setBackground(Color.WHITE);
@@ -453,6 +832,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl36);
 
 		lbl29 = new Label("0");
+		lbl29.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl29.getText().length()!=0){
+				lbl29.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl29.getText().length()!=0){
+					lbl29.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl29.setForeground(Color.RED);
 		lbl29.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl29.setBackground(Color.WHITE);
@@ -461,6 +853,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl29);
 
 		lbl30 = new Label("0");
+		lbl30.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl30.getText().length()!=0){
+				lbl30.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl30.getText().length()!=0){
+					lbl30.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl30.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl30.setBackground(Color.WHITE);
 		lbl30.setAlignment(Label.CENTER);
@@ -468,6 +873,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl30);
 
 		lbl37 = new Label("0");
+		lbl37.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl37.getText().length()!=0){
+				lbl37.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl37.getText().length()!=0){
+					lbl37.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl37.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl37.setBackground(Color.WHITE);
 		lbl37.setAlignment(Label.CENTER);
@@ -475,6 +893,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl37);
 
 		lbl38 = new Label("0");
+		lbl38.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl38.getText().length()!=0){
+				lbl38.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl38.getText().length()!=0){
+					lbl38.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl38.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl38.setBackground(Color.WHITE);
 		lbl38.setAlignment(Label.CENTER);
@@ -482,6 +913,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl38);
 
 		lbl31 = new Label("0");
+		lbl31.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl31.getText().length()!=0){
+				lbl31.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl31.getText().length()!=0){
+					lbl31.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl31.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl31.setBackground(Color.WHITE);
 		lbl31.setAlignment(Label.CENTER);
@@ -489,6 +933,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl31);
 
 		lbl32 = new Label("0");
+		lbl32.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl32.getText().length()!=0){
+				lbl32.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl32.getText().length()!=0){
+					lbl32.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl32.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl32.setBackground(Color.WHITE);
 		lbl32.setAlignment(Label.CENTER);
@@ -496,6 +953,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl32);
 
 		lbl39 = new Label("0");
+		lbl39.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl39.getText().length()!=0){
+				lbl39.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl39.getText().length()!=0){
+					lbl39.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl39.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl39.setBackground(Color.WHITE);
 		lbl39.setAlignment(Label.CENTER);
@@ -503,6 +973,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl39);
 
 		lbl40 = new Label("0");
+		lbl40.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl40.getText().length()!=0){
+				lbl40.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl40.getText().length()!=0){
+					lbl40.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl40.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl40.setBackground(Color.WHITE);
 		lbl40.setAlignment(Label.CENTER);
@@ -510,6 +993,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl40);
 
 		lbl33 = new Label("0");
+		lbl33.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl33.getText().length()!=0){
+				lbl33.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl33.getText().length()!=0){
+					lbl33.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl33.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl33.setBackground(Color.WHITE);
 		lbl33.setAlignment(Label.CENTER);
@@ -517,6 +1013,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl33);
 
 		lbl34 = new Label("0");
+		lbl34.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl34.getText().length()!=0){
+				lbl34.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl34.getText().length()!=0){
+					lbl34.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl34.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl34.setBackground(Color.WHITE);
 		lbl34.setAlignment(Label.CENTER);
@@ -524,6 +1033,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl34);
 
 		lbl41 = new Label("0");
+		lbl41.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl41.getText().length()!=0){
+				lbl41.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl41.getText().length()!=0){
+					lbl41.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl41.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl41.setBackground(Color.WHITE);
 		lbl41.setAlignment(Label.CENTER);
@@ -531,6 +1053,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl41);
 
 		lbl42 = new Label("0");
+		lbl42.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl42.getText().length()!=0){
+				lbl42.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl42.getText().length()!=0){
+					lbl42.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl42.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl42.setBackground(Color.WHITE);
 		lbl42.setAlignment(Label.CENTER);
@@ -538,6 +1073,19 @@ public class TelaAgendarAvaliacao extends JDialog {
 		panel.add(lbl42);
 
 		lbl35 = new Label("0");
+		lbl35.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				if(lbl35.getText().length()!=0){
+				lbl35.setBackground(corPassaMouse);
+				}
+			}
+			public void mouseExited(MouseEvent arg0) {
+				if(lbl35.getText().length()!=0){
+					lbl35.setBackground(Color.WHITE);
+					}
+			}
+		});
 		lbl35.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl35.setBackground(Color.WHITE);
 		lbl35.setAlignment(Label.CENTER);
