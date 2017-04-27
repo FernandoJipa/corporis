@@ -24,6 +24,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import RegrasDeNegocio.LimitandoCaracteresTXT;
+import javax.swing.JTextField;
+
 public class TelaAgendarAvaliacao extends JDialog {
 	/**
 	 * 
@@ -72,6 +75,8 @@ public class TelaAgendarAvaliacao extends JDialog {
 	boolean verificaClique41 = false;
 	boolean verificaClique42 = false;
 	boolean verificaClique40 = false;
+	
+	private String nomeMes = "Dezembro", nomeDia = "Terça-Feira";
 	
 	private JButton btnNovo, btnCadastrar, btnCancelar, btnVoltar;
 	private JLabel lblDomingo;
@@ -139,6 +144,8 @@ public class TelaAgendarAvaliacao extends JDialog {
 	private JLabel lblSelecionaAno;
 	private JLabel lblSelecionaDia;
 	private JLabel lblDiaSelecionado;
+	private JTextField lblNomeProfessor;
+	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
@@ -248,7 +255,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		getContentPane().add(btnVoltar);
 
 		panel.setLayout(null);
-		panel.setBounds(46, 41, 316, 267);
+		panel.setBounds(28, 41, 316, 267);
 		getContentPane().add(panel);
 
 		lblDomingo = new JLabel("Dom");
@@ -411,7 +418,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -513,6 +520,8 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl28.setBackground(Color.WHITE);
 					lbl29.setBackground(Color.WHITE);
 					lbl30.setBackground(Color.WHITE);
+					
+					setCalendario();
 				}
 			}
 		});
@@ -626,7 +635,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -740,7 +749,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -854,7 +863,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 			
@@ -969,7 +978,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1083,7 +1092,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1197,7 +1206,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1312,7 +1321,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1426,7 +1435,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1540,7 +1549,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1654,7 +1663,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1768,7 +1777,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1882,7 +1891,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -1996,7 +2005,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2111,7 +2120,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2225,7 +2234,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2339,7 +2348,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2454,7 +2463,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2568,7 +2577,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2682,7 +2691,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2796,7 +2805,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -2824,7 +2833,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl19.setBackground(corClicaMouse);
 					verificaClique19 = true;
 					
-					diaAltera = Integer.parseInt(lbl9.getText());
+					diaAltera = Integer.parseInt(lbl19.getText());
 					
 					verificaClique3 = false;
 					verificaClique2 = false;
@@ -2910,7 +2919,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3024,7 +3033,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3138,7 +3147,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3252,7 +3261,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3366,7 +3375,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3480,7 +3489,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3594,7 +3603,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3708,7 +3717,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3822,7 +3831,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -3936,7 +3945,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4050,7 +4059,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4164,7 +4173,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4278,7 +4287,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4392,7 +4401,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4506,7 +4515,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4620,7 +4629,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4734,7 +4743,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4847,7 +4856,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl1.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -4961,7 +4970,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl1.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -5074,7 +5083,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl41.setBackground(Color.WHITE);
 					lbl42.setBackground(Color.WHITE);
 					
-					
+					setCalendario();
 				}
 			}
 		});
@@ -5208,35 +5217,52 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblDiaSemana.setFont(new Font("Arial", Font.BOLD, 20));
 		lblDiaSemana.setForeground(Color.WHITE);
 		lblDiaSemana.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDiaSemana.setBounds(431, 123, 170, 26);
+		lblDiaSemana.setBounds(393, 44, 170, 26);
 		getContentPane().add(lblDiaSemana);
 		
 		lblSelecionaMes = new JLabel("Dezembro");
 		lblSelecionaMes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaMes.setForeground(Color.DARK_GRAY);
 		lblSelecionaMes.setFont(new Font("Arial", Font.BOLD, 20));
-		lblSelecionaMes.setBounds(431, 263, 170, 21);
+		lblSelecionaMes.setBounds(393, 184, 170, 21);
 		getContentPane().add(lblSelecionaMes);
 		
 		lblSelecionaAno = new JLabel("1998");
 		lblSelecionaAno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaAno.setForeground(Color.DARK_GRAY);
 		lblSelecionaAno.setFont(new Font("Arial", Font.BOLD, 16));
-		lblSelecionaAno.setBounds(439, 157, 44, 14);
+		lblSelecionaAno.setBounds(401, 78, 44, 14);
 		getContentPane().add(lblSelecionaAno);
 		
 		lblSelecionaDia = new JLabel("22");
 		lblSelecionaDia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaDia.setForeground(Color.DARK_GRAY);
 		lblSelecionaDia.setFont(new Font("Arial", Font.BOLD, 70));
-		lblSelecionaDia.setBounds(467, 171, 101, 86);
+		lblSelecionaDia.setBounds(429, 92, 101, 86);
 		getContentPane().add(lblSelecionaDia);
 		
 		lblDiaSelecionado = new JLabel("");
 		lblDiaSelecionado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiaSelecionado.setIcon(new ImageIcon(TelaAgendarAvaliacao.class.getResource("/imagens/dia_img.png")));
-		lblDiaSelecionado.setBounds(431, 119, 170, 170);
+		lblDiaSelecionado.setBounds(393, 40, 170, 170);
 		getContentPane().add(lblDiaSelecionado);
+		
+		lblNomeProfessor = new JTextField();
+		lblNomeProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNomeProfessor.setBounds(573, 77, 412, 33);
+		getContentPane().add(lblNomeProfessor);
+		lblNomeProfessor.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField_1.setColumns(10);
+		textField_1.setBounds(573, 146, 412, 33);
+		getContentPane().add(textField_1);
+		
+		JLabel lblNomeDoProfessor = new JLabel("Nome do Professor");
+		lblNomeDoProfessor.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNomeDoProfessor.setBounds(573, 53, 141, 14);
+		getContentPane().add(lblNomeDoProfessor);
 
 		btnVoltar.addMouseListener(new MouseAdapter() {
 
@@ -5248,9 +5274,11 @@ public class TelaAgendarAvaliacao extends JDialog {
 				btnVoltar.setBackground(new Color(232, 232, 232));
 			}
 		});
-
+		
 		limpar();
 		calendario();
+		setCalendario();
+		
 	}
 
 	public void inicializaCalendario() {
@@ -5273,28 +5301,40 @@ public class TelaAgendarAvaliacao extends JDialog {
 
 		if (mesFixo == 1) {
 			cbbMes.setSelectedIndex(0);
+			nomeMes = "Janeiro";
 		} else if (mesFixo == 2) {
 			cbbMes.setSelectedIndex(1);
+			nomeMes = "Fevereiro";
 		} else if (mesFixo == 3) {
 			cbbMes.setSelectedIndex(2);
+			nomeMes = "Março";
 		} else if (mesFixo == 4) {
 			cbbMes.setSelectedIndex(3);
+			nomeMes = "Abril";
 		} else if (mesFixo == 5) {
 			cbbMes.setSelectedIndex(4);
+			nomeMes = "Maio";
 		} else if (mesFixo == 6) {
 			cbbMes.setSelectedIndex(5);
+			nomeMes = "Junho";
 		} else if (mesFixo == 7) {
 			cbbMes.setSelectedIndex(6);
+			nomeMes = "Julho";
 		} else if (mesFixo == 8) {
 			cbbMes.setSelectedIndex(7);
+			nomeMes = "Agosto";
 		} else if (mesFixo == 9) {
 			cbbMes.setSelectedIndex(8);
+			nomeMes = "Setembro";
 		} else if (mesFixo == 10) {
 			cbbMes.setSelectedIndex(9);
+			nomeMes = "Outubro";
 		} else if (mesFixo == 11) {
 			cbbMes.setSelectedIndex(10);
+			nomeMes = "Novembro";
 		} else if (mesFixo == 12) {
 			cbbMes.setSelectedIndex(11);
+			nomeMes = "Dezembro";
 		}
 	}
 
@@ -5563,6 +5603,63 @@ public class TelaAgendarAvaliacao extends JDialog {
 			}
 			setDia++;
 		}
+	}
+	
+	public void setCalendario(){
+		mesAltera = cbbMes.getSelectedIndex();
+		anoAltera = Integer.parseInt(cbbAno.getSelectedItem().toString());
+		
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.set(anoAltera, mesAltera, diaAltera);
+		
+		int semana2 = calendar2.get(Calendar.DAY_OF_WEEK);
+		if (semana2 == Calendar.SUNDAY) {
+			nomeDia = "Domingo";
+		} else if (semana2 == Calendar.MONDAY) {
+			nomeDia = "Segunda-Feira";
+		} else if (semana2 == Calendar.TUESDAY) {
+			nomeDia = "Terça-Feira";
+		} else if (semana2 == Calendar.WEDNESDAY) {
+			nomeDia = "Quarta-Feira";
+		} else if (semana2 == Calendar.THURSDAY) {
+			nomeDia = "Quinta-Feira";
+		} else if (semana2 == Calendar.FRIDAY) {
+			nomeDia = "Sexta-Feira";
+		} else if (semana2 == Calendar.SATURDAY) {
+			nomeDia = "Sábado";
+		}
+		
+		if (mesAltera == 0) {
+			nomeMes = "Janeiro";
+		} else if (mesAltera == 1) {
+			nomeMes = "Fevereiro";
+		} else if (mesAltera == 2) {
+			nomeMes = "Março";
+		} else if (mesAltera == 3) {
+			nomeMes = "Abril";
+		} else if (mesAltera == 4) {
+			nomeMes = "Maio";
+		} else if (mesAltera == 5) {
+			nomeMes = "Junho";
+		} else if (mesAltera == 6) {
+			nomeMes = "Julho";
+		} else if (mesAltera == 7) {
+			nomeMes = "Agosto";
+		} else if (mesAltera == 8) {
+			nomeMes = "Setembro";
+		} else if (mesAltera == 9) {
+			nomeMes = "Outubro";
+		} else if (mesAltera == 10) {
+			nomeMes = "Novembro";
+		} else if (mesAltera == 11) {
+			nomeMes = "Dezembro";
+		}
+		
+		lblSelecionaDia.setText(Integer.toString(diaAltera));
+		lblSelecionaAno.setText(Integer.toString(anoAltera));
+		lblSelecionaMes.setText(nomeMes);
+		lblDiaSemana.setText(nomeDia);
+		
 	}
 
 	public void limpar() {

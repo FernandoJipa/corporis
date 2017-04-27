@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 
 import RegrasDeNegocio.FillPainter;
 import Telas.TelaAgendarAvaliacao;
+import Telas.TelaCadastroCliente;
 
 public class Corporis {
 	
@@ -39,5 +40,8 @@ public class Corporis {
 		
 		TelaAgendarAvaliacao taa = new TelaAgendarAvaliacao();
 		taa.setVisible(true);
+		
+		//TelaCadastroCliente cc = new TelaCadastroCliente();
+		//cc.setVisible(true);
 	}
 }
