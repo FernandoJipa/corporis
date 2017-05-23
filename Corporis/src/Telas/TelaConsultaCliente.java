@@ -20,7 +20,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import Confirmacoes.ConfirmacaoExcluirCliente;
 import Confirmacoes.SelecionaCliente;
 import DAO.ConsultaClienteDAO;
 
@@ -39,6 +38,36 @@ public class TelaConsultaCliente extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private String verificaTela;//Verifica qual tela acessou esta classe
+	
+	private int cod = -1;
+
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
+	}
+
+	public String getVerificaTela() {
+		return verificaTela;
+	}
+
+	public void setVerificaTela(String verificaTela) {
+		this.verificaTela = verificaTela;
+	}
+	
+	public void setNomeBotao(){
+		if(getVerificaTela()=="TelaAgendarAvaliacao"){
+			btnDetalhe.setText("Selecionar");
+			btnDetalhe.setIcon(new ImageIcon(TelaAgendarAvaliacao.class.getResource("/imagens/selecionar.png")));
+			this.setTitle("Selecione o cliente");
+			btnNovo.setEnabled(false);
+		}
+	}
+	
 	private JButton btnDetalhe = new JButton("Detalhes"), btnNovo = new JButton("Novo");
 
 	private Border semBorda = new MatteBorder(3, 3, 3, 3, (new Color(255, 255, 255)));
@@ -108,42 +137,68 @@ public class TelaConsultaCliente extends JDialog {
 			btnDetalhe.setIcon(new ImageIcon(TelaConsultaCliente.class.getResource("/imagens/detalhes_ico.png")));
 			
 			btnDetalhe.addActionListener(new ActionListener() {
+
 				public void actionPerformed(ActionEvent arg0) {
-					if (resultTable.getSelectedRow() == -1) {
-						setModal(false);
-						SelecionaCliente sc = new SelecionaCliente();
-						sc.setVisible(true);
-						setModal(true);
-					} else {
-						lin = resultTable.getSelectedRow();
-						Object conteudo = resultTable.getValueAt(lin, col);
-						int cod = (Integer) conteudo;
-						setVisible(false);
-						TelaUpdateCliente tuc = new TelaUpdateCliente();
-						tuc.setID(cod);
-						tuc.setTXT();
-						tuc.setVisible(true);						
+					if(getVerificaTela() == "TelaAgendarAvaliacao"){
+						if (resultTable.getSelectedRow() == -1) {
+							setModal(false);
+							SelecionaCliente sc = new SelecionaCliente();
+							sc.setVisible(true);
+							setModal(true);
+						} else {
+							lin = resultTable.getSelectedRow();
+							Object conteudo = resultTable.getValueAt(lin, col);
+							int cod = (Integer) conteudo;
+							setCod(cod);
+							setVisible(false);
+						}
+					}else{
+						if (resultTable.getSelectedRow() == -1) {
+							setModal(false);
+							SelecionaCliente sc = new SelecionaCliente();
+							sc.setVisible(true);
+							setModal(true);
+						} else {
+							lin = resultTable.getSelectedRow();
+							Object conteudo = resultTable.getValueAt(lin, col);
+							int cod = (Integer) conteudo;
+							setVisible(false);
+							TelaUpdateCliente tuc = new TelaUpdateCliente();
+							tuc.setID(cod);
+							tuc.setTXT();
+							tuc.setVisible(true);						
+						}
 					}
 				}
 			});
 			
 			resultTable.setDefaultEditor(Object.class, null); 
 			resultTable.addMouseListener(new MouseAdapter() {  
-			    public void mouseClicked(MouseEvent e)  
-			    {  
-			        if (e.getClickCount() == 2) //Se o usuário der um clique duplo com o mouse na linha da tabela faça!
-			        {  
-			            Point p = e.getPoint(); //Define um ponto p para a extração dos dados da JTable
-			            int row = resultTable.rowAtPoint(p); //Pega a linha que o usuario clicou com o mouse
-			            int col = 0; //Coluna recebe 0 para que o valor buscado seja o da primeira coluna que é a coluna de COD dos clientes
-			            Object conteudo = resultTable.getValueAt(row, col);//Pega o conteúdo da célulasque contém o ID do cliente selecionado
-			            int cod = (Integer) conteudo; //Converte o conteudo da celula para um valor do tipo Inteiro
-						setVisible(false);//Fecha a tela de Busca
-						TelaUpdateCliente tuc = new TelaUpdateCliente();//Instacia a classe TelaUpdateCliente
-						tuc.setID(cod);//Envia o codigo convertido acima para a classe UpdateCliente, em que será usado para trazer os dados vindos do banco de dados
-						tuc.setTXT();//Coloca os valores vindos do Banco de Dados nos campos de texto da tela "TelaUpdateCliente"
-						tuc.setVisible(true);  
-			        }  
+			    public void mouseClicked(MouseEvent e) {
+			    	if(getVerificaTela() == "TelaAgendarAvaliacao"){
+				        if (e.getClickCount() == 2){  //Se o usuário der um clique duplo com o mouse na linha da tabela faça!
+				            Point p = e.getPoint(); //Define um ponto p para a extração dos dados da JTable
+				            int row = resultTable.rowAtPoint(p); //Pega a linha que o usuario clicou com o mouse
+				            int col = 0; //Coluna recebe 0 para que o valor buscado seja o da primeira coluna que é a coluna de COD dos clientes
+				            Object conteudo = resultTable.getValueAt(row, col);
+							int cod = (Integer) conteudo;
+							setCod(cod);
+							setVisible(false);  
+				        }
+			    	}else{
+			    		if (e.getClickCount() == 2){  //Se o usuário der um clique duplo com o mouse na linha da tabela faça!
+				            Point p = e.getPoint(); //Define um ponto p para a extração dos dados da JTable
+				            int row = resultTable.rowAtPoint(p); //Pega a linha que o usuario clicou com o mouse
+				            int col = 0; //Coluna recebe 0 para que o valor buscado seja o da primeira coluna que é a coluna de COD dos clientes
+				            Object conteudo = resultTable.getValueAt(row, col);//Pega o conteúdo da célulasque contém o ID do cliente selecionado
+				            int cod = (Integer) conteudo; //Converte o conteudo da celula para um valor do tipo Inteiro
+							setVisible(false);//Fecha a tela de Busca
+							TelaUpdateCliente tuc = new TelaUpdateCliente();//Instacia a classe TelaUpdateCliente
+							tuc.setID(cod);//Envia o codigo convertido acima para a classe UpdateCliente, em que será usado para trazer os dados vindos do banco de dados
+							tuc.setTXT();//Coloca os valores vindos do Banco de Dados nos campos de texto da tela "TelaUpdateCliente"
+							tuc.setVisible(true);  
+				        }
+			    	}
 			    }  
 			}); 
 			
@@ -160,11 +215,11 @@ public class TelaConsultaCliente extends JDialog {
 				}
 			});
 			
-			btnDetalhe.setBounds(157, 408, 118, 33);
+			btnDetalhe.setBounds(208, 408, 118, 33);
 			getContentPane().add(btnDetalhe);
 			btnDetalhe.setBackground(cinzaBotoes);
 
-			btnNovo.setBounds(285, 408, 83, 33);
+			btnNovo.setBounds(336, 408, 83, 33);
 			getContentPane().add(btnNovo);
 
 			JButton btnVoltar = new JButton("Voltar");
@@ -188,7 +243,7 @@ public class TelaConsultaCliente extends JDialog {
 			}); 
 			
 			btnVoltar.setIcon(new ImageIcon(TelaConsultaCliente.class.getResource("/imagens/voltar_ico.png")));
-			btnVoltar.setBounds(492, 408, 93, 33);
+			btnVoltar.setBounds(429, 408, 93, 33);
 			getContentPane().add(btnVoltar);
 			btnVoltar.setBackground(cinzaBotoes);
 
@@ -205,34 +260,6 @@ public class TelaConsultaCliente extends JDialog {
 			getContentPane().add(txtBusca);
 			txtBusca.setColumns(10);
 			
-			JButton btnApagar = new JButton("Apagar");
-			btnApagar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					if (resultTable.getSelectedRow() == -1) {
-						setModal(false);
-						SelecionaCliente sc = new SelecionaCliente();
-						sc.setVisible(true);
-						setModal(true);
-					} else {
-						ConfirmacaoExcluirCliente cec = new ConfirmacaoExcluirCliente();
-						int linNome = resultTable.getSelectedRow(), colNome = 1;
-						Object NomeCliente = resultTable.getValueAt(linNome, colNome);
-						String NomeDoCliente = String.valueOf(NomeCliente);
-						cec.setNome(NomeDoCliente);
-						cec.setLabel();
-						lin = resultTable.getSelectedRow();
-						Object conteudo = resultTable.getValueAt(lin, col);
-						int cod = (Integer) conteudo;
-						cec.setID(cod);
-						cec.setVisible(true);
-						resetTable(DEFAULT_QUERY);
-					}
-				}
-			});
-			btnApagar.setIcon(new ImageIcon(TelaConsultaCliente.class.getResource("/imagens/apagar_ico.png")));
-			btnApagar.setBackground(new Color(232, 232, 232));
-			btnApagar.setBounds(378, 408, 104, 33);
-			getContentPane().add(btnApagar);
 			txtBusca.addKeyListener(new KeyAdapter() {
 
 				public void keyReleased(KeyEvent ke) {
@@ -244,19 +271,6 @@ public class TelaConsultaCliente extends JDialog {
 					}
 				}
 			});
-			
-			btnApagar.addMouseListener(new MouseAdapter() {
-
-				public void mouseEntered(MouseEvent me) {
-					btnApagar.setBackground(mouseCima);
-					;
-				}
-
-				public void mouseExited(MouseEvent e) {
-					btnApagar.setBackground(cinzaBotoes);
-					;
-				}
-			}); 
 
 			// tamanho das colunas
 			resultTable.getColumnModel().getColumn(0).setPreferredWidth(1);

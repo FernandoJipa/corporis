@@ -242,7 +242,14 @@ public class TelaCadastroCliente extends JDialog {
 				} else if (!(txtNome.getText().trim().equals("")) && !(txtEndereco.getText().trim().equals(""))
 						&& !(txtBairro.getText().trim().equals("")) && (ftxtCampoCPF.getText().trim().length() == 14)
 						&& !(txtCidade.getText().trim().equals("")) && dataInvalida == 0) {
-
+					
+					String tiraPontoCpf;
+					tiraPontoCpf = ftxtCampoCPF.getText().replaceAll(".","");
+					tiraPontoCpf = tiraPontoCpf.replaceAll("-","");
+					
+					
+					
+					
 					setModal(false);
 
 					Cadastro_Cliente cc = new Cadastro_Cliente();
