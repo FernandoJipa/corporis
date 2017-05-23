@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,14 +25,37 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import RegrasDeNegocio.LimitandoCaracteresTXT;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
+
+import DAO.AgendarAvaliacaoDAO;
+import RegrasDeNegocio.AgendarAvaliacao;
 
 public class TelaAgendarAvaliacao extends JDialog {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private int ID;
+	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	private String dataNascAluno;
+
+	public String getDataNascAluno() {
+		return dataNascAluno;
+	}
+
+	public void setDataNascAluno(String dataNascAluno) {
+		this.dataNascAluno = dataNascAluno;
+	}
 
 	boolean verificaClique1 = false;
 	boolean verificaClique2 = false;
@@ -144,8 +168,17 @@ public class TelaAgendarAvaliacao extends JDialog {
 	private JLabel lblSelecionaAno;
 	private JLabel lblSelecionaDia;
 	private JLabel lblDiaSelecionado;
-	private JTextField lblNomeProfessor;
-	private JTextField textField_1;
+	private JTextField txtNomeProfessor;
+	private JTextField txtCpfProfessor;
+	private JPanel panel_1;
+	private JLabel lblCpfProfessor;
+	private JTextField txtTelefoneProfessor;
+	private JTextField txtEmailProfessor;
+	private JTextField txtNomeAluno;
+	private JTextField txtClassificacaoAluno;
+	private JTextField txtSexoAluno;
+	private JTextField txtDataAvaliacao;
+	private JTextField txtIdadeAluno;
 
 	/**
 	 * Create the panel.
@@ -170,12 +203,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(diaAltera);
-				System.out.println(diaFixo);
-				System.out.println(mesAltera);
-				System.out.println(mesFixo);
-				System.out.println(anoAltera);
-				System.out.println(anoAltera);
+				
 			}
 		});
 
@@ -255,7 +283,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		getContentPane().add(btnVoltar);
 
 		panel.setLayout(null);
-		panel.setBounds(28, 41, 316, 267);
+		panel.setBounds(28, 23, 316, 241);
 		getContentPane().add(panel);
 
 		lblDomingo = new JLabel("Dom");
@@ -263,7 +291,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblDomingo.setBackground(vermelhoCalendario);
 		lblDomingo.setHorizontalAlignment(JLabel.CENTER);
 		lblDomingo.setFont(new Font("Arial", Font.BOLD, 14));
-		lblDomingo.setBounds(0, 0, 45, 30);
+		lblDomingo.setBounds(1, 31, 45, 30);
 		panel.add(lblDomingo);
 
 		lblSegunda = new JLabel("Seg");
@@ -271,7 +299,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblSegunda.setBackground(vermelhoCalendario);
 		lblSegunda.setFont(new Font("Arial", Font.BOLD, 14));
 		lblSegunda.setHorizontalAlignment(JLabel.CENTER);
-		lblSegunda.setBounds(45, 0, 45, 30);
+		lblSegunda.setBounds(46, 31, 45, 30);
 		panel.add(lblSegunda);
 
 		lblTerca = new JLabel("Ter");
@@ -279,7 +307,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblTerca.setBackground(vermelhoCalendario);
 		lblTerca.setFont(new Font("Arial", Font.BOLD, 14));
 		lblTerca.setHorizontalAlignment(JLabel.CENTER);
-		lblTerca.setBounds(90, 0, 45, 30);
+		lblTerca.setBounds(91, 31, 45, 30);
 		panel.add(lblTerca);
 
 		lblQuarta = new JLabel("Qua");
@@ -287,7 +315,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblQuarta.setBackground(vermelhoCalendario);
 		lblQuarta.setFont(new Font("Arial", Font.BOLD, 14));
 		lblQuarta.setHorizontalAlignment(JLabel.CENTER);
-		lblQuarta.setBounds(135, 0, 45, 30);
+		lblQuarta.setBounds(136, 31, 45, 30);
 		panel.add(lblQuarta);
 
 		lblQuinta = new JLabel("Qui");
@@ -295,7 +323,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblQuinta.setBackground(vermelhoCalendario);
 		lblQuinta.setFont(new Font("Arial", Font.BOLD, 14));
 		lblQuinta.setHorizontalAlignment(JLabel.CENTER);
-		lblQuinta.setBounds(180, 0, 45, 30);
+		lblQuinta.setBounds(181, 31, 45, 30);
 		panel.add(lblQuinta);
 
 		lblSexta = new JLabel("Sex");
@@ -303,7 +331,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblSexta.setBackground(vermelhoCalendario);
 		lblSexta.setFont(new Font("Arial", Font.BOLD, 14));
 		lblSexta.setHorizontalAlignment(JLabel.CENTER);
-		lblSexta.setBounds(225, 0, 45, 30);
+		lblSexta.setBounds(226, 31, 45, 30);
 		panel.add(lblSexta);
 
 		lblSabado = new JLabel("S\u00E1b");
@@ -311,7 +339,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblSabado.setBackground(vermelhoCalendario);
 		lblSabado.setFont(new Font("Arial", Font.BOLD, 14));
 		lblSabado.setHorizontalAlignment(JLabel.CENTER);
-		lblSabado.setBounds(270, 0, 45, 30);
+		lblSabado.setBounds(271, 31, 45, 30);
 		panel.add(lblSabado);
 
 		lbl1 = new JLabel("0");
@@ -426,7 +454,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl1.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl1.setBackground(Color.WHITE);
 		lbl1.setHorizontalAlignment(JLabel.CENTER);
-		lbl1.setBounds(0, 30, 45, 30);
+		lbl1.setBounds(1, 61, 45, 30);
 		panel.add(lbl1);
 
 		lbl2 = new JLabel("0");
@@ -528,7 +556,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl2.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl2.setBackground(Color.WHITE);
 		lbl2.setHorizontalAlignment(JLabel.CENTER);
-		lbl2.setBounds(45, 30, 45, 30);
+		lbl2.setBounds(46, 61, 45, 30);
 		panel.add(lbl2);
 
 		lbl3 = new JLabel("0");
@@ -642,7 +670,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl3.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl3.setBackground(Color.WHITE);
 		lbl3.setHorizontalAlignment(JLabel.CENTER);
-		lbl3.setBounds(90, 30, 45, 30);
+		lbl3.setBounds(91, 61, 45, 30);
 		panel.add(lbl3);
 
 		lbl4 = new JLabel("0");
@@ -756,7 +784,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl4.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl4.setBackground(Color.WHITE);
 		lbl4.setHorizontalAlignment(JLabel.CENTER);
-		lbl4.setBounds(135, 30, 45, 30);
+		lbl4.setBounds(136, 61, 45, 30);
 		panel.add(lbl4);
 
 		lbl5 = new JLabel("0");
@@ -871,7 +899,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl5.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl5.setBackground(Color.WHITE);
 		lbl5.setHorizontalAlignment(JLabel.CENTER);
-		lbl5.setBounds(180, 30, 45, 30);
+		lbl5.setBounds(181, 61, 45, 30);
 		panel.add(lbl5);
 
 		lbl6 = new JLabel("0");
@@ -985,7 +1013,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl6.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl6.setBackground(Color.WHITE);
 		lbl6.setHorizontalAlignment(JLabel.CENTER);
-		lbl6.setBounds(225, 30, 45, 30);
+		lbl6.setBounds(226, 61, 45, 30);
 		panel.add(lbl6);
 
 		lbl7 = new JLabel("0");
@@ -1099,7 +1127,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl7.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl7.setBackground(Color.WHITE);
 		lbl7.setHorizontalAlignment(JLabel.CENTER);
-		lbl7.setBounds(270, 30, 45, 30);
+		lbl7.setBounds(271, 61, 45, 30);
 		panel.add(lbl7);
 
 		lbl8 = new JLabel("0");
@@ -1214,7 +1242,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl8.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl8.setBackground(Color.WHITE);
 		lbl8.setHorizontalAlignment(JLabel.CENTER);
-		lbl8.setBounds(0, 60, 45, 30);
+		lbl8.setBounds(1, 91, 45, 30);
 		panel.add(lbl8);
 
 		lbl9 = new JLabel("0");
@@ -1328,7 +1356,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl9.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl9.setBackground(Color.WHITE);
 		lbl9.setHorizontalAlignment(JLabel.CENTER);
-		lbl9.setBounds(45, 60, 45, 30);
+		lbl9.setBounds(46, 91, 45, 30);
 		panel.add(lbl9);
 
 		lbl10 = new JLabel("0");
@@ -1442,7 +1470,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl10.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl10.setBackground(Color.WHITE);
 		lbl10.setHorizontalAlignment(JLabel.CENTER);
-		lbl10.setBounds(90, 60, 45, 30);
+		lbl10.setBounds(91, 91, 45, 30);
 		panel.add(lbl10);
 
 		lbl11 = new JLabel("0");
@@ -1556,7 +1584,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl11.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl11.setBackground(Color.WHITE);
 		lbl11.setHorizontalAlignment(JLabel.CENTER);
-		lbl11.setBounds(135, 60, 45, 30);
+		lbl11.setBounds(136, 91, 45, 30);
 		panel.add(lbl11);
 
 		lbl12 = new JLabel("0");
@@ -1670,7 +1698,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl12.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl12.setBackground(Color.WHITE);
 		lbl12.setHorizontalAlignment(JLabel.CENTER);
-		lbl12.setBounds(180, 60, 45, 30);
+		lbl12.setBounds(181, 91, 45, 30);
 		panel.add(lbl12);
 
 		lbl13 = new JLabel("0");
@@ -1784,7 +1812,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl13.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl13.setBackground(Color.WHITE);
 		lbl13.setHorizontalAlignment(JLabel.CENTER);
-		lbl13.setBounds(225, 60, 45, 30);
+		lbl13.setBounds(226, 91, 45, 30);
 		panel.add(lbl13);
 
 		lbl14 = new JLabel("0");
@@ -1898,7 +1926,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl14.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl14.setBackground(Color.WHITE);
 		lbl14.setHorizontalAlignment(JLabel.CENTER);
-		lbl14.setBounds(270, 60, 45, 30);
+		lbl14.setBounds(271, 91, 45, 30);
 		panel.add(lbl14);
 
 		lbl22 = new JLabel("0");
@@ -2013,7 +2041,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl22.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl22.setBackground(Color.WHITE);
 		lbl22.setHorizontalAlignment(JLabel.CENTER);
-		lbl22.setBounds(0, 120, 45, 30);
+		lbl22.setBounds(1, 151, 45, 30);
 		panel.add(lbl22);
 
 		lbl23 = new JLabel("0");
@@ -2127,7 +2155,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl23.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl23.setBackground(Color.WHITE);
 		lbl23.setHorizontalAlignment(JLabel.CENTER);
-		lbl23.setBounds(45, 120, 45, 30);
+		lbl23.setBounds(46, 151, 45, 30);
 		panel.add(lbl23);
 
 		lbl16 = new JLabel("0");
@@ -2241,7 +2269,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl16.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl16.setBackground(Color.WHITE);
 		lbl16.setHorizontalAlignment(JLabel.CENTER);
-		lbl16.setBounds(45, 90, 45, 30);
+		lbl16.setBounds(46, 121, 45, 30);
 		panel.add(lbl16);
 
 		lbl15 = new JLabel("0");
@@ -2356,7 +2384,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl15.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl15.setBackground(Color.WHITE);
 		lbl15.setHorizontalAlignment(JLabel.CENTER);
-		lbl15.setBounds(0, 90, 45, 30);
+		lbl15.setBounds(1, 121, 45, 30);
 		panel.add(lbl15);
 
 		lbl17 = new JLabel("0");
@@ -2470,7 +2498,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl17.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl17.setBackground(Color.WHITE);
 		lbl17.setHorizontalAlignment(JLabel.CENTER);
-		lbl17.setBounds(90, 90, 45, 30);
+		lbl17.setBounds(91, 121, 45, 30);
 		panel.add(lbl17);
 
 		lbl24 = new JLabel("0");
@@ -2584,7 +2612,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl24.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl24.setBackground(Color.WHITE);
 		lbl24.setHorizontalAlignment(JLabel.CENTER);
-		lbl24.setBounds(90, 120, 45, 30);
+		lbl24.setBounds(91, 151, 45, 30);
 		panel.add(lbl24);
 
 		lbl25 = new JLabel("0");
@@ -2698,7 +2726,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl25.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl25.setBackground(Color.WHITE);
 		lbl25.setHorizontalAlignment(JLabel.CENTER);
-		lbl25.setBounds(135, 120, 45, 30);
+		lbl25.setBounds(136, 151, 45, 30);
 		panel.add(lbl25);
 
 		lbl18 = new JLabel("0");
@@ -2812,7 +2840,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl18.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl18.setBackground(Color.WHITE);
 		lbl18.setHorizontalAlignment(JLabel.CENTER);
-		lbl18.setBounds(135, 90, 45, 30);
+		lbl18.setBounds(136, 121, 45, 30);
 		panel.add(lbl18);
 
 		lbl19 = new JLabel("0");
@@ -2926,7 +2954,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl19.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl19.setBackground(Color.WHITE);
 		lbl19.setHorizontalAlignment(JLabel.CENTER);
-		lbl19.setBounds(180, 90, 45, 30);
+		lbl19.setBounds(181, 121, 45, 30);
 		panel.add(lbl19);
 
 		lbl26 = new JLabel("0");
@@ -3040,7 +3068,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl26.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl26.setBackground(Color.WHITE);
 		lbl26.setHorizontalAlignment(JLabel.CENTER);
-		lbl26.setBounds(180, 120, 45, 30);
+		lbl26.setBounds(181, 151, 45, 30);
 		panel.add(lbl26);
 
 		lbl27 = new JLabel("0");
@@ -3154,7 +3182,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl27.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl27.setBackground(Color.WHITE);
 		lbl27.setHorizontalAlignment(JLabel.CENTER);
-		lbl27.setBounds(225, 120, 45, 30);
+		lbl27.setBounds(226, 151, 45, 30);
 		panel.add(lbl27);
 
 		lbl20 = new JLabel("0");
@@ -3268,7 +3296,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl20.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl20.setBackground(Color.WHITE);
 		lbl20.setHorizontalAlignment(JLabel.CENTER);
-		lbl20.setBounds(225, 90, 45, 30);
+		lbl20.setBounds(226, 121, 45, 30);
 		panel.add(lbl20);
 
 		lbl21 = new JLabel("0");
@@ -3382,7 +3410,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl21.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl21.setBackground(Color.WHITE);
 		lbl21.setHorizontalAlignment(JLabel.CENTER);
-		lbl21.setBounds(270, 90, 45, 30);
+		lbl21.setBounds(271, 121, 45, 30);
 		panel.add(lbl21);
 
 		lbl28 = new JLabel("0");
@@ -3496,7 +3524,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl28.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl28.setBackground(Color.WHITE);
 		lbl28.setHorizontalAlignment(JLabel.CENTER);
-		lbl28.setBounds(270, 120, 45, 30);
+		lbl28.setBounds(271, 151, 45, 30);
 		panel.add(lbl28);
 
 		lbl36 = new JLabel("0");
@@ -3611,7 +3639,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl36.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl36.setBackground(Color.WHITE);
 		lbl36.setHorizontalAlignment(JLabel.CENTER);
-		lbl36.setBounds(0, 180, 45, 30);
+		lbl36.setBounds(1, 211, 45, 30);
 		panel.add(lbl36);
 
 		lbl29 = new JLabel("0");
@@ -3725,7 +3753,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl29.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl29.setBackground(Color.WHITE);
 		lbl29.setHorizontalAlignment(JLabel.CENTER);
-		lbl29.setBounds(0, 150, 45, 30);
+		lbl29.setBounds(1, 181, 45, 30);
 		panel.add(lbl29);
 
 		lbl30 = new JLabel("0");
@@ -3838,7 +3866,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl30.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl30.setBackground(Color.WHITE);
 		lbl30.setHorizontalAlignment(JLabel.CENTER);
-		lbl30.setBounds(45, 150, 45, 30);
+		lbl30.setBounds(46, 181, 45, 30);
 		panel.add(lbl30);
 
 		lbl37 = new JLabel("0");
@@ -3952,7 +3980,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl37.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl37.setBackground(Color.WHITE);
 		lbl37.setHorizontalAlignment(JLabel.CENTER);
-		lbl37.setBounds(45, 180, 45, 30);
+		lbl37.setBounds(46, 211, 45, 30);
 		panel.add(lbl37);
 
 		lbl38 = new JLabel("0");
@@ -4066,7 +4094,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl38.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl38.setBackground(Color.WHITE);
 		lbl38.setHorizontalAlignment(JLabel.CENTER);
-		lbl38.setBounds(90, 180, 45, 30);
+		lbl38.setBounds(91, 211, 45, 30);
 		panel.add(lbl38);
 
 		lbl31 = new JLabel("0");
@@ -4180,7 +4208,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl31.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl31.setBackground(Color.WHITE);
 		lbl31.setHorizontalAlignment(JLabel.CENTER);
-		lbl31.setBounds(90, 150, 45, 30);
+		lbl31.setBounds(91, 181, 45, 30);
 		panel.add(lbl31);
 
 		lbl32 = new JLabel("0");
@@ -4294,7 +4322,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl32.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl32.setBackground(Color.WHITE);
 		lbl32.setHorizontalAlignment(JLabel.CENTER);
-		lbl32.setBounds(135, 150, 45, 30);
+		lbl32.setBounds(136, 181, 45, 30);
 		panel.add(lbl32);
 
 		lbl39 = new JLabel("0");
@@ -4408,7 +4436,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl39.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl39.setBackground(Color.WHITE);
 		lbl39.setHorizontalAlignment(JLabel.CENTER);
-		lbl39.setBounds(135, 180, 45, 30);
+		lbl39.setBounds(136, 211, 45, 30);
 		panel.add(lbl39);
 
 		lbl40 = new JLabel("0");
@@ -4522,7 +4550,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl40.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl40.setBackground(Color.WHITE);
 		lbl40.setHorizontalAlignment(JLabel.CENTER);
-		lbl40.setBounds(180, 180, 45, 30);
+		lbl40.setBounds(181, 211, 45, 30);
 		panel.add(lbl40);
 
 		lbl33 = new JLabel("0");
@@ -4636,7 +4664,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl33.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl33.setBackground(Color.WHITE);
 		lbl33.setHorizontalAlignment(JLabel.CENTER);
-		lbl33.setBounds(180, 150, 45, 30);
+		lbl33.setBounds(181, 181, 45, 30);
 		panel.add(lbl33);
 
 		lbl34 = new JLabel("0");
@@ -4750,7 +4778,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl34.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl34.setBackground(Color.WHITE);
 		lbl34.setHorizontalAlignment(JLabel.CENTER);
-		lbl34.setBounds(225, 150, 45, 30);
+		lbl34.setBounds(226, 181, 45, 30);
 		panel.add(lbl34);
 
 		lbl41 = new JLabel("0");
@@ -4863,7 +4891,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl41.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl41.setBackground(Color.WHITE);
 		lbl41.setHorizontalAlignment(JLabel.CENTER);
-		lbl41.setBounds(225, 180, 45, 30);
+		lbl41.setBounds(226, 211, 45, 30);
 		panel.add(lbl41);
 
 		lbl42 = new JLabel("0");
@@ -4977,7 +5005,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl42.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl42.setBackground(Color.WHITE);
 		lbl42.setHorizontalAlignment(JLabel.CENTER);
-		lbl42.setBounds(270, 180, 45, 30);
+		lbl42.setBounds(271, 211, 45, 30);
 		panel.add(lbl42);
 
 		lbl35 = new JLabel("0");
@@ -5074,7 +5102,6 @@ public class TelaAgendarAvaliacao extends JDialog {
 					lbl32.setBackground(Color.WHITE);
 					lbl33.setBackground(Color.WHITE);
 					lbl34.setBackground(Color.WHITE);
-					lbl35.setBackground(Color.WHITE);
 					lbl36.setBackground(Color.WHITE);
 					lbl37.setBackground(Color.WHITE);
 					lbl38.setBackground(Color.WHITE);
@@ -5090,9 +5117,9 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lbl35.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbl35.setBackground(Color.WHITE);
 		lbl35.setHorizontalAlignment(JLabel.CENTER);
-		lbl35.setBounds(270, 150, 45, 30);
+		lbl35.setBounds(271, 181, 45, 30);
 		panel.add(lbl35);
-		cbbMes.setBounds(0, 228, 135, 28);
+		cbbMes.setBounds(0, 0, 135, 28);
 		panel.add(cbbMes);
 		cbbMes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -5144,125 +5171,288 @@ public class TelaAgendarAvaliacao extends JDialog {
 				
 			}
 		});
-
-		cbbMes.setToolTipText("Selecione o m\u00EAs");
-		cbbMes.setMaximumRowCount(6);
-		cbbMes.setFont(new Font("Arial", Font.PLAIN, 14));
-		cbbMes.setBackground(Color.WHITE);
-		cbbAno.setBounds(180, 228, 135, 28);
-		panel.add(cbbAno);
-		cbbAno.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					// int x =
-					// Integer.parseInt(cbbAno.getSelectedItem().toString());
-					diaAltera = diaFixo;
-					calendario();
-					
-					lbl1.setBackground(Color.WHITE);
-					lbl2.setBackground(Color.WHITE);
-					lbl3.setBackground(Color.WHITE);
-					lbl4.setBackground(Color.WHITE);
-					lbl5.setBackground(Color.WHITE);
-					lbl6.setBackground(Color.WHITE);
-					lbl7.setBackground(Color.WHITE);
-					lbl8.setBackground(Color.WHITE);
-					lbl9.setBackground(Color.WHITE);
-					lbl10.setBackground(Color.WHITE);
-					lbl11.setBackground(Color.WHITE);
-					lbl12.setBackground(Color.WHITE);
-					lbl13.setBackground(Color.WHITE);
-					lbl14.setBackground(Color.WHITE);
-					lbl15.setBackground(Color.WHITE);
-					lbl16.setBackground(Color.WHITE);
-					lbl17.setBackground(Color.WHITE);
-					lbl18.setBackground(Color.WHITE);
-					lbl19.setBackground(Color.WHITE);
-					lbl20.setBackground(Color.WHITE);
-					lbl21.setBackground(Color.WHITE);
-					lbl22.setBackground(Color.WHITE);
-					lbl23.setBackground(Color.WHITE);
-					lbl24.setBackground(Color.WHITE);
-					lbl25.setBackground(Color.WHITE);
-					lbl26.setBackground(Color.WHITE);
-					lbl27.setBackground(Color.WHITE);
-					lbl28.setBackground(Color.WHITE);
-					lbl29.setBackground(Color.WHITE);
-					lbl30.setBackground(Color.WHITE);
-					lbl31.setBackground(Color.WHITE);
-					lbl32.setBackground(Color.WHITE);
-					lbl33.setBackground(Color.WHITE);
-					lbl34.setBackground(Color.WHITE);
-					lbl1.setBackground(Color.WHITE);
-					lbl36.setBackground(Color.WHITE);
-					lbl37.setBackground(Color.WHITE);
-					lbl38.setBackground(Color.WHITE);
-					lbl39.setBackground(Color.WHITE);
-					lbl40.setBackground(Color.WHITE);
-					lbl41.setBackground(Color.WHITE);
-					lbl42.setBackground(Color.WHITE);
-					
-				} catch (Exception x) {
-					cbbAno.setSelectedItem(anoFixo);
-				}
-			}
-		});
-		cbbAno.setEditable(true);
-
-		cbbAno.setToolTipText("Selecione o ano");
-		cbbAno.setFont(new Font("Arial", Font.PLAIN, 14));
-		cbbAno.setBackground(Color.WHITE);
+		
+				cbbMes.setToolTipText("Selecione o m\u00EAs");
+				cbbMes.setMaximumRowCount(6);
+				cbbMes.setFont(new Font("Arial", Font.PLAIN, 14));
+				cbbMes.setBackground(Color.WHITE);
+				cbbAno.setBounds(181, 0, 135, 28);
+				cbbAno.setBackground(Color.WHITE);
+				panel.add(cbbAno);
+				cbbAno.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							// int x =
+							// Integer.parseInt(cbbAno.getSelectedItem().toString());
+							diaAltera = diaFixo;
+							calendario();
+							
+							lbl1.setBackground(Color.WHITE);
+							lbl2.setBackground(Color.WHITE);
+							lbl3.setBackground(Color.WHITE);
+							lbl4.setBackground(Color.WHITE);
+							lbl5.setBackground(Color.WHITE);
+							lbl6.setBackground(Color.WHITE);
+							lbl7.setBackground(Color.WHITE);
+							lbl8.setBackground(Color.WHITE);
+							lbl9.setBackground(Color.WHITE);
+							lbl10.setBackground(Color.WHITE);
+							lbl11.setBackground(Color.WHITE);
+							lbl12.setBackground(Color.WHITE);
+							lbl13.setBackground(Color.WHITE);
+							lbl14.setBackground(Color.WHITE);
+							lbl15.setBackground(Color.WHITE);
+							lbl16.setBackground(Color.WHITE);
+							lbl17.setBackground(Color.WHITE);
+							lbl18.setBackground(Color.WHITE);
+							lbl19.setBackground(Color.WHITE);
+							lbl20.setBackground(Color.WHITE);
+							lbl21.setBackground(Color.WHITE);
+							lbl22.setBackground(Color.WHITE);
+							lbl23.setBackground(Color.WHITE);
+							lbl24.setBackground(Color.WHITE);
+							lbl25.setBackground(Color.WHITE);
+							lbl26.setBackground(Color.WHITE);
+							lbl27.setBackground(Color.WHITE);
+							lbl28.setBackground(Color.WHITE);
+							lbl29.setBackground(Color.WHITE);
+							lbl30.setBackground(Color.WHITE);
+							lbl31.setBackground(Color.WHITE);
+							lbl32.setBackground(Color.WHITE);
+							lbl33.setBackground(Color.WHITE);
+							lbl34.setBackground(Color.WHITE);
+							lbl1.setBackground(Color.WHITE);
+							lbl36.setBackground(Color.WHITE);
+							lbl37.setBackground(Color.WHITE);
+							lbl38.setBackground(Color.WHITE);
+							lbl39.setBackground(Color.WHITE);
+							lbl40.setBackground(Color.WHITE);
+							lbl41.setBackground(Color.WHITE);
+							lbl42.setBackground(Color.WHITE);
+							
+						} catch (Exception x) {
+							cbbAno.setSelectedItem(anoFixo);
+						}
+					}
+				});
+				cbbAno.setEditable(true);
+				
+						cbbAno.setToolTipText("Selecione o ano");
+						cbbAno.setFont(new Font("Arial", Font.PLAIN, 14));
 		
 		lblDiaSemana = new JLabel("Ter\u00E7a-Feira");
 		lblDiaSemana.setFont(new Font("Arial", Font.BOLD, 20));
 		lblDiaSemana.setForeground(Color.WHITE);
 		lblDiaSemana.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDiaSemana.setBounds(393, 44, 170, 26);
+		lblDiaSemana.setBounds(107, 295, 170, 26);
 		getContentPane().add(lblDiaSemana);
 		
 		lblSelecionaMes = new JLabel("Dezembro");
 		lblSelecionaMes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaMes.setForeground(Color.DARK_GRAY);
 		lblSelecionaMes.setFont(new Font("Arial", Font.BOLD, 20));
-		lblSelecionaMes.setBounds(393, 184, 170, 21);
+		lblSelecionaMes.setBounds(107, 435, 170, 21);
 		getContentPane().add(lblSelecionaMes);
 		
 		lblSelecionaAno = new JLabel("1998");
 		lblSelecionaAno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaAno.setForeground(Color.DARK_GRAY);
 		lblSelecionaAno.setFont(new Font("Arial", Font.BOLD, 16));
-		lblSelecionaAno.setBounds(401, 78, 44, 14);
+		lblSelecionaAno.setBounds(115, 329, 44, 14);
 		getContentPane().add(lblSelecionaAno);
 		
 		lblSelecionaDia = new JLabel("22");
 		lblSelecionaDia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelecionaDia.setForeground(Color.DARK_GRAY);
 		lblSelecionaDia.setFont(new Font("Arial", Font.BOLD, 70));
-		lblSelecionaDia.setBounds(429, 92, 101, 86);
+		lblSelecionaDia.setBounds(143, 343, 101, 86);
 		getContentPane().add(lblSelecionaDia);
 		
 		lblDiaSelecionado = new JLabel("");
 		lblDiaSelecionado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiaSelecionado.setIcon(new ImageIcon(TelaAgendarAvaliacao.class.getResource("/imagens/dia_img.png")));
-		lblDiaSelecionado.setBounds(393, 40, 170, 170);
+		lblDiaSelecionado.setBounds(107, 291, 170, 170);
 		getContentPane().add(lblDiaSelecionado);
 		
-		lblNomeProfessor = new JTextField();
-		lblNomeProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNomeProfessor.setBounds(573, 77, 412, 33);
-		getContentPane().add(lblNomeProfessor);
-		lblNomeProfessor.setColumns(10);
+		JLabel lblDadosDoAvaliador = new JLabel("Dados do avaliador");
+		lblDadosDoAvaliador.setOpaque(true);
+		lblDadosDoAvaliador.setBackground(new Color(190, 190, 190));
+		lblDadosDoAvaliador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDadosDoAvaliador.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDadosDoAvaliador.setBounds(429, 16, 113, 14);
+		getContentPane().add(lblDadosDoAvaliador);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		textField_1.setColumns(10);
-		textField_1.setBounds(573, 146, 412, 33);
-		getContentPane().add(textField_1);
+		panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(220, 220, 220)));
+		panel_1.setBackground(new Color(190, 190, 190));
+		panel_1.setBounds(389, 23, 594, 241);
+		getContentPane().add(panel_1);
 		
-		JLabel lblNomeDoProfessor = new JLabel("Nome do Professor");
-		lblNomeDoProfessor.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNomeDoProfessor.setBounds(573, 53, 141, 14);
-		getContentPane().add(lblNomeDoProfessor);
+		JLabel lblNomeProfessor = new JLabel("Nome");
+		lblNomeProfessor.setBounds(8, 19, 141, 14);
+		panel_1.add(lblNomeProfessor);
+		lblNomeProfessor.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		txtNomeProfessor = new JTextField();
+		txtNomeProfessor.setBounds(8, 41, 574, 33);
+		panel_1.add(txtNomeProfessor);
+		txtNomeProfessor.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtNomeProfessor.setColumns(10);
+		
+		txtCpfProfessor = new JTextField();
+		txtCpfProfessor.setBounds(8, 114, 258, 33);
+		panel_1.add(txtCpfProfessor);
+		txtCpfProfessor.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtCpfProfessor.setColumns(10);
+		
+		lblCpfProfessor = new JLabel("CPF ");
+		lblCpfProfessor.setFont(new Font("Arial", Font.BOLD, 14));
+		lblCpfProfessor.setBounds(9, 93, 32, 14);
+		panel_1.add(lblCpfProfessor);
+		
+		txtTelefoneProfessor = new JTextField();
+		txtTelefoneProfessor.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtTelefoneProfessor.setColumns(10);
+		txtTelefoneProfessor.setBounds(277, 114, 306, 33);
+		panel_1.add(txtTelefoneProfessor);
+		
+		JLabel lblTelefoneProfessor = new JLabel("Telefone");
+		lblTelefoneProfessor.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTelefoneProfessor.setBounds(277, 93, 67, 14);
+		panel_1.add(lblTelefoneProfessor);
+		
+		txtEmailProfessor = new JTextField();
+		txtEmailProfessor.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtEmailProfessor.setColumns(10);
+		txtEmailProfessor.setBounds(8, 186, 574, 33);
+		panel_1.add(txtEmailProfessor);
+		
+		JLabel lblEmailProfessor = new JLabel("E-mail ");
+		lblEmailProfessor.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEmailProfessor.setBounds(8, 165, 46, 14);
+		panel_1.add(lblEmailProfessor);
+		
+		JLabel lblDadosAluno = new JLabel("Dados do aluno");
+		lblDadosAluno.setOpaque(true);
+		lblDadosAluno.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDadosAluno.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDadosAluno.setBackground(new Color(190, 190, 190));
+		lblDadosAluno.setBounds(428, 290, 99, 14);
+		getContentPane().add(lblDadosAluno);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(220, 220, 220)));
+		panel_2.setBackground(new Color(190, 190, 190));
+		panel_2.setBounds(388, 296, 594, 170);
+		getContentPane().add(panel_2);
+		
+		JLabel lblNomeAluno = new JLabel("Nome");
+		lblNomeAluno.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNomeAluno.setBounds(8, 24, 141, 14);
+		panel_2.add(lblNomeAluno);
+		
+		txtNomeAluno = new JTextField();
+		txtNomeAluno.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtNomeAluno.setColumns(10);
+		txtNomeAluno.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		txtNomeAluno.setBackground(new Color(232, 232, 232));
+		txtNomeAluno.setBounds(8, 46, 422, 33);
+		panel_2.add(txtNomeAluno);
+		
+		txtClassificacaoAluno = new JTextField();
+		txtClassificacaoAluno.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtClassificacaoAluno.setColumns(10);
+		txtClassificacaoAluno.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		txtClassificacaoAluno.setBackground(new Color(232, 232, 232));
+		txtClassificacaoAluno.setBounds(7, 111, 233, 33);
+		panel_2.add(txtClassificacaoAluno);
+		
+		JLabel lblClassificacao = new JLabel("Classifica\u00E7\u00E3o");
+		lblClassificacao.setFont(new Font("Arial", Font.BOLD, 14));
+		lblClassificacao.setBounds(7, 89, 141, 14);
+		panel_2.add(lblClassificacao);
+		
+		txtSexoAluno = new JTextField();
+		txtSexoAluno.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtSexoAluno.setColumns(10);
+		txtSexoAluno.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		txtSexoAluno.setBackground(new Color(232, 232, 232));
+		txtSexoAluno.setBounds(250, 111, 125, 33);
+		panel_2.add(txtSexoAluno);
+		
+		JLabel lblSexo = new JLabel("Sexo");
+		lblSexo.setFont(new Font("Arial", Font.BOLD, 14));
+		lblSexo.setBounds(250, 89, 68, 14);
+		panel_2.add(lblSexo);
+		
+		JButton btnBuscar = new JButton("");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaConsultaCliente tcc = null;
+				try {
+					tcc = new TelaConsultaCliente();
+					setModal(false);
+					tcc.setVerificaTela("TelaAgendarAvaliacao");
+					tcc.setNomeBotao();
+					tcc.setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(tcc.getCod() != -1){
+					setID(tcc.getCod());
+					setTXT();
+				}
+			}
+		});
+		
+		btnBuscar.addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent me) {
+				btnBuscar.setBackground(new Color(70, 130, 180));
+				;
+			}
+
+			public void mouseExited(MouseEvent e) {
+				btnBuscar.setBackground(new Color(220, 220, 220));
+				;
+			}
+		});
+		
+		btnBuscar.setIcon(new ImageIcon(TelaAgendarAvaliacao.class.getResource("/imagens/buscar_ico.png")));
+		btnBuscar.setForeground(Color.BLACK);
+		btnBuscar.setEnabled(true);
+		btnBuscar.setBackground(new Color(232, 232, 232));
+		btnBuscar.setBounds(543, 46, 41, 33);
+		panel_2.add(btnBuscar);
+		
+		txtDataAvaliacao = new JTextField();
+		txtDataAvaliacao.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtDataAvaliacao.setColumns(10);
+		txtDataAvaliacao.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		txtDataAvaliacao.setBackground(new Color(232, 232, 232));
+		txtDataAvaliacao.setBounds(385, 112, 199, 33);
+		panel_2.add(txtDataAvaliacao);
+		
+		JLabel lblDataAvaliacao = new JLabel("Data da Avalia\u00E7\u00E3o");
+		lblDataAvaliacao.setFont(new Font("Arial", Font.BOLD, 14));
+		lblDataAvaliacao.setBounds(385, 90, 199, 14);
+		panel_2.add(lblDataAvaliacao);
+		
+		txtIdadeAluno = new JTextField();
+		txtIdadeAluno.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtIdadeAluno.setColumns(10);
+		txtIdadeAluno.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		txtIdadeAluno.setBackground(new Color(232, 232, 232));
+		txtIdadeAluno.setBounds(440, 46, 93, 33);
+		panel_2.add(txtIdadeAluno);
+		
+		JLabel lblIdadeAluno = new JLabel("Idade");
+		lblIdadeAluno.setFont(new Font("Arial", Font.BOLD, 14));
+		lblIdadeAluno.setBounds(440, 24, 68, 14);
+		panel_2.add(lblIdadeAluno);
 
 		btnVoltar.addMouseListener(new MouseAdapter() {
 
@@ -5438,7 +5628,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 
 		int totalDiaMes = 0;
 
-		if (mesAltera == 0 || mesAltera == 2 || mesAltera == 4 || mesAltera == 6 || mesAltera == 8 || mesAltera == 10) {
+		if (mesAltera == 0 || mesAltera == 2 || mesAltera == 4 || mesAltera == 6 || mesAltera == 7 || mesAltera == 9 || mesAltera == 11) {
 			totalDiaMes = 31;
 		} else if (mesAltera == 1) {
 			int sum = (anoAltera % 4);
@@ -5447,7 +5637,7 @@ public class TelaAgendarAvaliacao extends JDialog {
 			} else {
 				totalDiaMes = 28;
 			}
-		} else if (mesAltera == 3 || mesAltera == 5 || mesAltera == 7 || mesAltera == 9 || mesAltera == 11) {
+		} else if (mesAltera == 3 || mesAltera == 5 || mesAltera == 8 || mesAltera == 10) {
 			totalDiaMes = 30;
 		}
 
@@ -5660,6 +5850,23 @@ public class TelaAgendarAvaliacao extends JDialog {
 		lblSelecionaMes.setText(nomeMes);
 		lblDiaSemana.setText(nomeDia);
 		
+		String mesAvaliacao = "", diaAvaliacao = "";
+		
+		if(mesAltera < 9){
+				mesAvaliacao = "0"+Integer.toString(mesAltera+1);
+		}else{
+			mesAvaliacao = Integer.toString(mesAltera+1);
+		}
+		if(diaAltera <= 9){
+			diaAvaliacao = "0"+Integer.toString(diaAltera);
+		}else{
+			diaAvaliacao = Integer.toString(diaAltera);
+		}
+		
+		txtDataAvaliacao.setText(diaAvaliacao+"/"+mesAvaliacao+"/"+anoAltera);
+		
+		
+		
 	}
 
 	public void limpar() {
@@ -5668,5 +5875,58 @@ public class TelaAgendarAvaliacao extends JDialog {
 		btnCancelar.setEnabled(false);
 		btnNovo.setEnabled(true);
 		btnVoltar.setEnabled(true);
+		
+		txtNomeProfessor.setBackground(new Color(232,232, 232));
+		txtNomeProfessor.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		
+		txtCpfProfessor.setBackground(new Color(232,232, 232));
+		txtCpfProfessor.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		
+		txtEmailProfessor.setBackground(new Color(232,232, 232));
+		txtEmailProfessor.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+		
+		txtTelefoneProfessor.setBackground(new Color(232,232, 232));
+		txtTelefoneProfessor.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(232, 232, 232)));
+	}
+	
+	public void setTXT() {
+		AgendarAvaliacaoDAO aad = new AgendarAvaliacaoDAO();
+		AgendarAvaliacao aa = new AgendarAvaliacao();
+		aad.setID(getID());
+		aad.Idade();
+		aad.agendarAvaliacao(aa);
+		setDataNascAluno(aad.getDia() + "/" + aad.getMes() + "/" + aad.getAno());
+		txtNomeAluno.setText(aa.getNome());
+		txtClassificacaoAluno.setText(aa.getClassificacao());
+		txtSexoAluno.setText(aa.getSexo());
+		SimpleDateFormat nasc = new SimpleDateFormat("dd/MM/yyyy");
+		nasc.setLenient(false);
+		try {
+			nasc.parse(getDataNascAluno());
+			Date dataNascimento = nasc.parse(getDataNascAluno());
+			txtIdadeAluno.setText(Integer.toString(calculaIdade(dataNascimento)));
+		} catch (ParseException exception) {
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
+		}
+	}
+	
+	public static int calculaIdade(java.util.Date dataNasc) {
+		Calendar dataNascimento = Calendar.getInstance();
+		dataNascimento.setTime(dataNasc);
+		Calendar hoje = Calendar.getInstance();
+
+		int idade = hoje.get(Calendar.YEAR) - dataNascimento.get(Calendar.YEAR);
+
+		if (hoje.get(Calendar.MONTH) < dataNascimento.get(Calendar.MONTH)) {
+			idade--;
+		} else {
+			if (hoje.get(Calendar.MONTH) == dataNascimento.get(Calendar.MONTH)
+					&& hoje.get(Calendar.DAY_OF_MONTH) < dataNascimento.get(Calendar.DAY_OF_MONTH)) {
+				idade--;
+			}
+		}
+
+		return idade;
 	}
 }
